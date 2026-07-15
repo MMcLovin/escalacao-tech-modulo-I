@@ -14,13 +14,6 @@
     <name>Sistema de Avaliacao Habitacional - Proposta Service</name>
 
     <dependencies>
-        <!-- Shared contracts dependency -->
-        <dependency>
-            <groupId>br.com.caixa.avaliacao</groupId>
-            <artifactId>shared-contracts</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-
         <!-- REST API and reactive JSON handling -->
         <dependency>
             <groupId>io.quarkus</groupId>

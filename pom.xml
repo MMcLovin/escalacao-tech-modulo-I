@@ -61,7 +61,6 @@
     </dependencies>
 
     <modules>
-        <module>shared-contracts</module>
         <module>proposta-service</module>
         <module>cliente-service</module>
     </modules>
