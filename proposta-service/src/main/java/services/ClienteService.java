@@ -39,7 +39,8 @@ public class ClienteService {
     }
 
     @CacheInvalidate(cacheName = "dados-cliente-cache")
-    public void limparCacheCliente(String cpf) {
+    public Uni<Void> limparCacheCliente(String cpf) {
         LOGGER.infof("Invalidando cache para o CPF: %s", cpf);
+        return Uni.createFrom().nullItem();
     }
 }
