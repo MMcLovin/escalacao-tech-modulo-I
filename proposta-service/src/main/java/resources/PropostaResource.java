@@ -1,6 +1,8 @@
 package resources;
 
+import dtos.PropostaDTO;
 import dtos.requests.CriacaoPropostaRequest;
+import menssageria.emmiter.PropostaEmmiter;
 import services.ClienteService;
 import io.smallrye.mutiny.Uni;
 import jakarta.enterprise.context.ApplicationScoped;
@@ -19,6 +21,9 @@ public class PropostaResource {
     @Inject
     ClienteService clienteService;
 
+    @Inject
+    PropostaEmmiter emmiter;
+
     @POST
     public Uni<Response> criar(@Valid CriacaoPropostaRequest request) {
 
@@ -27,5 +32,20 @@ public class PropostaResource {
                 .map(dadosCliente -> {
                     return Response.status(Response.Status.ACCEPTED).entity(dadosCliente).build();
                 });
+    }
+
+
+
+    @Path("/nova")
+    @POST
+    public Response SolicitarAvaliacao(@Valid CriacaoPropostaRequest request){
+        var cliente = clienteService.obterDadosCliente(request.cpf()).await().indefinitely();
+        var proposta =  new PropostaDTO(cliente.cpf(),cliente.nome(),cliente.ocupacao(),
+                cliente.renda(),request.valorImovel(),request.valorEntrada());
+
+
+        emmiter.enviarMensagem(proposta);
+        return Response.status(Response.Status.ACCEPTED).build();
+
     }
 }

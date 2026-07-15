@@ -1,4 +1,13 @@
 -- Inserts de teste para carregar CPFs válidos na inicialização do H2
+CREATE TABLE Cliente (
+    cpf VARCHAR(255) NOT NULL,
+    nome VARCHAR(255),
+    ocupacao VARCHAR(255),
+    renda NUMERIC(38, 2),
+    PRIMARY KEY (cpf)
+);
+
+
 INSERT INTO Cliente (cpf, nome, renda, ocupacao) VALUES ('12345678900', 'Gabriel Silva', 5500.00, 'Analista de TI');
 INSERT INTO Cliente (cpf, nome, renda, ocupacao) VALUES ('98765432100', 'Maria Souza', 8200.00, 'Engenheira Civil');
 INSERT INTO Cliente (cpf, nome, renda, ocupacao) VALUES ('11122233344', 'Lucas Oliveira', 3500.00, 'Assistente Administrativo');
